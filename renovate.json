@@ -1,5 +1,22 @@
 {
-  "extends": [
-    "config:base"
+  "extends": ["config:base"],
+
+  "timezone": "Europe/Stockholm",
+  "prHourlyLimit": 0,
+  "labels": ["dependencies"],
+
+  "regexManagers": [
+    {
+      "fileMatch": ["^Dockerfile$"],
+      "matchStrings": ["ARG [^_]+_REF=(?<depName>.*?)/v(?<currentValue>.*)"],
+      "datasourceTemplate": "git-tags"
+    }
+  ],
+
+  "packageRules": [
+    {
+      "matchDatasources": ["git-tags"],
+      "extractVersion": "^.*?/v(?<version>.*)$"
+    }
   ]
 }
