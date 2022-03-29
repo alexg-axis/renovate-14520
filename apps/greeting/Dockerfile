@@ -1,4 +1,4 @@
-FROM alpine:3 as builder
+FROM alpine:20220328 as builder
 
 RUN apk add --no-cache git
 
@@ -6,7 +6,7 @@ ARG GREETING_REF=packages/greeting/v1.0.0
 
 RUN git clone --depth 1 --branch "$GREETING_REF" https://github.com/alexg-axis/renovate-14520.git
 
-FROM alpine:3
+FROM alpine:20220328
 
 RUN apk add --no-cache bash
 
